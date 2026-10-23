@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="개인정보 노출 시뮬레이터 - 파편화된 개인정보가 어떻게 추론될 수 있는지 확인하세요">
+  <title>개인정보 노출 시뮬레이터</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🔒</text></svg>">
+</head>
+
+<body>
+  <div id="loadingOverlay" class="loading-overlay">
+    <div class="loading-spinner"></div>
+    <p class="loading-text">분석 중...</p>
+  </div>
+
+  <header class="header">
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <div class="logo-icon">🔒</div>
+          <div class="logo-text">
+            <h1>Privacy Simulator</h1>
+            <p>개인정보 노출 시뮬레이터</p>
+          </div>
+        </div>
+        <div class="server-status" id="serverStatus">
+          <span class="status-dot" id="statusDot"></span>
+          <span id="statusText">연결 확인 중...</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <div class="container">
+      <section class="users-section">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="icon">👥</span>
+            <h2>가상 사용자 목록</h2>
+          </div>
+          <div id="totalUsers" class="stat-badge">
+            </div>
+        </div>
+
+        <div class="search-container">
+          <div class="search-box">
+            <div class="search-input-wrapper">
+              <span class="search-icon">🔍</span>
+              <input type="text" id="searchInput" class="search-input" placeholder="사용자 ID로 검색 (예: U001)"
+                autocomplete="off">
+            </div>
+            <select id="typeFilter" class="filter-select">
+              <option value="">모든 사용자 유형</option>
+              <option value="office_worker">💼 직장인</option>
+              <option value="student">📚 학생</option>
+              <option value="freelancer">💻 프리랜서</option>
+              <option value="parent">👶 부모</option>
+              <option value="business_owner">🏢 사업자</option>
+            </select>
+          </div>
+        </div>
+
+        <div id="usersGrid" class="users-grid">
+          </div>
+
+        <div class="pagination" id="pagination">
+          <button class="pagination-btn" id="prevBtn" disabled>◀ 이전</button>
+          <div class="pagination-numbers" id="paginationNumbers">
+            </div>
+          <button class="pagination-btn" id="nextBtn">다음 ▶</button>
+        </div>
+      </section>
+
+      <section class="statistics-section">
+        <div class="section-header">
+          <div class="section-title">
+            <span class="icon">📊</span>
+            <h2>전체 통계</h2>
+          </div>
+        </div>
+
+        <div class="stats-grid" id="statsGrid">
+          <div class="glass-card stat-card">
+            <div class="stat-value" id="totalUsersStat">-</div>
+            <div class="stat-label">전체 사용자</div>
+          </div>
+        </div>
+
+        <div class="glass-card">
+          <h3 class="mb-md">유형별 분포</h3>
+          <div class="persona-distribution" id="personaDistribution">
+            </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="analysisModal">
+    <div class="modal">
+      <div class="modal-header">
+        <div class="modal-title">
+          <span>🔍</span>
+          <h2>분석 결과</h2>
+        </div>
+        <button class="close-btn" id="closeModal">&times;</button>
+      </div>
+      
+      <div class="modal-body" id="modalBody">
+        </div>
+    </div>
+  </div>
+
+  <footer class="footer">
+    <div class="container">
+      <p class="footer-text">
+        Privacy Simulator v1.0 | 개인정보 보호의 중요성을 알리기 위한 교육용 시뮬레이터
+      </p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+
+</html>
